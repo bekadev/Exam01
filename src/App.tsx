@@ -1,26 +1,38 @@
-import React from 'react';
+import React, {useState} from 'react';
 import logo from './logo.svg';
 import './App.css';
+import {ButtonComponent} from "./button/Button";
+
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+    const [number, setNumber] = useState(0)
+
+    const ButtonClick = () => {
+        setNumber(number +1)
+    }
+
+    const ButtonPlus = () => {
+        setNumber(0)
+    }
+
+    return (
+        <div className="AppBg">
+            <div className="App">
+                <div className={"Number"}>
+                    {number}
+                </div>
+                <div className={"Items"}>
+                    <div className={'Item'}>
+                        <ButtonComponent disabled={number === 5} name={'inc'} callBack={() => ButtonClick()}/>
+                    </div>
+                    <div className={'Item'}>
+                        <ButtonComponent disabled={number === 0} name={'reset'} callBack={() => ButtonPlus()}/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
 }
 
 export default App;
